@@ -5,6 +5,7 @@ import { Actions } from 'react-native-router-flux'
 import Title from '../components/Title'
 import Footer from '../components/Footer'
 import Input from '../components/Input'
+import List from '../components/List'
 
 import { actionCreators } from '../redux/todoRedux'
 
@@ -40,15 +41,7 @@ class App extends Component {
       <View style={styles.container}>
         <Title/>
         <Input placeholder='Enter an item!' onSubmit={this.onSubmit}/>
-        <ScrollView style={styles.scrollContainer}>
-          {
-            this.props.todos.map( (item, index) => {
-              return <Text key={index}>
-                {item}
-              </Text>
-            }
-          )}
-        </ScrollView>
+        <List todos={this.props.todos} />
         <Footer/>
       </View>
     )
