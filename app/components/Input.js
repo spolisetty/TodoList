@@ -2,10 +2,50 @@ import React, { Component, PropTypes } from 'react'
 import { TextInput, View, StyleSheet } from 'react-native'
 
 const styles = StyleSheet.create({
+  input: {
+    padding: 15,
+    height: 40,
+    borderColor: 'whitesmoke',
+    borderWidth: 1,
+    fontSize: 12
+  }
 })
 
 export default class Input extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { item: '' };
+  }
+
+  onChangeText = (item) => {
+    if( item.trim() === '') {}
+    else{
+      this.setState({
+        item
+      });
+      console.log('placeholder is: ', item);
+    }
+  }
+
+  onSubmitEditing = (event) => {
+    if( event.nativeEvent.text.trim() === '') {
+    }
+    else {
+      console.log("Entered the following and submitted:", event.nativeEvent.text);
+    }
+    this.setState({item: ''});
+  }
+
   render() {
-    return null
+    return (
+      <TextInput
+        style={styles.input}
+        onChangeText={this.onChangeText}
+        placeholder='Enter an item!'
+        value={this.state.item}
+        onSubmitEditing={this.onSubmitEditing}
+        blurOnSubmit={false}
+      />
+    )
   }
 }

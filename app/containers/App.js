@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux'
 import Title from '../components/Title'
 import Footer from '../components/Footer'
+import Input from '../components/Input'
 
 import { actionCreators } from '../redux/todoRedux'
 
@@ -34,6 +35,7 @@ class App extends Component {
     return (
       <View style={styles.container}>
         <Title/>
+        <Input/>
         <ScrollView style={styles.scrollContainer}>
           {
             items.map( (item, index) => {
