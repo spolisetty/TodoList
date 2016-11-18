@@ -19,26 +19,30 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = (state) => ({
-  items: state.items,
+  todos: state.todos,
 })
 
-let items = [ 'a', 'b', 'c'];
+// let items = [ 'a', 'b', 'c'];
 
 class App extends Component {
 
   static propTypes = {
-    items: PropTypes.array.isRequired,
+    todos: PropTypes.array.isRequired,
     dispatch: PropTypes.func.isRequired,
   };
+
+  onSubmit = (item) => {
+    this.props.dispatch(actionCreators.addItem(item));
+  }
 
   render() {
     return (
       <View style={styles.container}>
         <Title/>
-        <Input/>
+        <Input placeholder='Enter an item!' onSubmit={this.onSubmit}/>
         <ScrollView style={styles.scrollContainer}>
           {
-            items.map( (item, index) => {
+            this.props.todos.map( (item, index) => {
               return <Text key={index}>
                 {item}
               </Text>

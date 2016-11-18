@@ -32,6 +32,7 @@ export default class Input extends Component {
     }
     else {
       console.log("Entered the following and submitted:", event.nativeEvent.text);
+      this.props.onSubmit(event.nativeEvent.text); // Prop is sent from App.js when calling Input
     }
     this.setState({item: ''});
   }
@@ -41,7 +42,7 @@ export default class Input extends Component {
       <TextInput
         style={styles.input}
         onChangeText={this.onChangeText}
-        placeholder='Enter an item!'
+        placeholder={this.props.placeholder}
         value={this.state.item}
         onSubmitEditing={this.onSubmitEditing}
         blurOnSubmit={false}
