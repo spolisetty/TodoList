@@ -36,8 +36,9 @@ class App extends Component {
     this.props.dispatch(actionCreators.addItem(item));
   }
 
-  onRemoveItem = (item) => {
-    console.log("Item to be removed is: ", item);
+  onRemoveItem = (index) => {
+    console.log("Item to be removed is: ", index);
+    this.props.dispatch(actionCreators.removeItem(index))
   }
 
   render() {
