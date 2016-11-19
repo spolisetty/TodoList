@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import { Provider } from 'react-redux'
-
+import codePush from "react-native-code-push"
 import configureStore from './store/configureStore'
 import App from './containers/App'
 
 const store = configureStore()
 
-export default class extends Component {
+console.log("Code push:", codePush);
+
+class TodoClass extends Component {
   render() {
     return (
       <Provider store={store}>
@@ -15,3 +17,5 @@ export default class extends Component {
     )
   }
 }
+
+export default codePush(TodoClass)
