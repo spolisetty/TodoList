@@ -36,12 +36,16 @@ class App extends Component {
     this.props.dispatch(actionCreators.addItem(item));
   }
 
+  onRemoveItem = (item) => {
+    console.log("Item to be removed is: ", item);
+  }
+
   render() {
     return (
       <View style={styles.container}>
         <Title/>
         <Input placeholder='Enter an item!' onSubmit={this.onSubmit}/>
-        <List todos={this.props.todos} />
+        <List todos={this.props.todos} onRemoveItem={this.onRemoveItem}/>
         <Footer/>
       </View>
     )

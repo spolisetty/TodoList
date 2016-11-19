@@ -1,4 +1,6 @@
-import { createStore, applyMiddleware } from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux'
+import devTools from 'remote-redux-devtools'
+import Platform from 'react-native'
 import { persistStore, autoRehydrate } from 'redux-persist'
 // Thunk middleware allows actions to be chained and waited on by returning
 // a function from that action
@@ -22,13 +24,20 @@ if (process.env.NODE_ENV === 'development') {
   require('../config/ReactotronConfig')
 }
 
+const enhancer = compose(
+    applyMiddleware(...middleware),
+    devTools({
+      name: Platform.OS,
+      hostname: 'localhost',
+      port: 5678
+    }));
 // Can use a preloaded initialState if available, in this case we don't
 export default (initialState) => {
   // http://redux.js.org/docs/api/createStore.html
   const store = createStore(
     reducer,
     initialState,
-    applyMiddleware(...middleware),
+    enhancer
   )
   return store
 }

@@ -18,22 +18,16 @@ export default class Input extends Component {
   }
 
   onChangeText = (item) => {
-    if( item.trim() === '') {}
-    else{
-      this.setState({
-        item
-      });
-      console.log('placeholder is: ', item);
-    }
+    this.setState({
+      item
+    });
+    console.log('placeholder is: ', item);
   }
 
   onSubmitEditing = (event) => {
-    if( event.nativeEvent.text.trim() === '') {
-    }
-    else {
-      console.log("Entered the following and submitted:", event.nativeEvent.text);
-      this.props.onSubmit(event.nativeEvent.text); // Prop is sent from App.js when calling Input
-    }
+    if(this.state.item.trim() === '') { return; }
+    console.log("Entered the following and submitted:", event.nativeEvent.text);
+    this.props.onSubmit(this.state.item); // Prop is sent from App.js when calling Input
     this.setState({item: ''});
   }
 
